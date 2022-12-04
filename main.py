@@ -13,9 +13,9 @@ size = 25
 x = 100
 y = height-size
 vx = 50
-vy = -150
-bounciness = 0.5
-ay = 50
+vy = -300
+bounciness = 0.8
+ay = 98.1
 xclear = True
 yclear = True
 
@@ -53,10 +53,14 @@ def update(dt):
     if xclear and (x + size >= width or x + -size <= 0):
         vx = -vx
         vx = vx * bounciness
+        print("velocity x = ", vx)
+        print("velocity y = ", vy)
         xclear = False
     if yclear and (y + size >= height or y + -size <= 0):
         vy = -vy
         vy = vy * bounciness
+        print("velocity x = ", vx)
+        print("velocity y = ", vy)
         yclear = False
     # Go through events that are passed to the script by the window.
     for event in pygame.event.get():
@@ -109,6 +113,7 @@ def runPyGame():
     while True:  # Loop forever!
         update(dt)  # You can update/draw here, I've just moved the code for neatness.
         draw(screen)
+
 
         dt = fpsClock.tick(fps)
 
