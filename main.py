@@ -14,7 +14,7 @@ y = 100
 vx = 100
 vy = 100
 width, height = 640, 480
-bounciness = 0.8
+bounciness = 0.2
 ay = 100
 xclear = True
 yclear = True
@@ -33,6 +33,15 @@ def update(dt):
     x += vx*dt/1000
     y += vy*dt/1000
     vy += ay * dt / 1000
+    if x < 0 + size:
+        x = 0 + size
+    if y < 0 + size:
+        y = 0 + size
+    if x > width - size:
+        x = width - size
+    if y > height - size:
+        y = height - size
+
 
     if x>size and x < width -size:
         xclear = True
@@ -44,6 +53,7 @@ def update(dt):
     if xclear and (x + size >= width or x + -size <= 0):
         vx = -vx
         vx = vx * bounciness
+        xclear = False
     if yclear and (y + size >= height or y + -size <= 0):
         vy = -vy
         vy = vy * bounciness
