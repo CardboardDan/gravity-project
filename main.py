@@ -8,7 +8,7 @@ import pygame
 from pygame.locals import QUIT
 
 width, height = 800, 600
-RED = (200, 0, 0)
+Color = (200, 0, 0)
 size = 25
 x = 100
 y = height-size
@@ -86,7 +86,7 @@ def draw(screen):
     screen.fill((255, 255, 255))  # Fill the screen with white.
 
     # Redraw screen here.
-    pygame.draw.circle(screen, RED, (x, y), size)
+    pygame.draw.circle(screen, Color, (x, y), size)
 
     # Flip the display so that the things we drew actually show up.
     pygame.display.flip()
