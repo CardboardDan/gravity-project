@@ -15,7 +15,7 @@ y = height-size
 vx = 50
 vy = -300
 bounciness = 0.8
-ay = 98.1
+gravity = 98.1
 xclear = True
 yclear = True
 
@@ -32,7 +32,7 @@ def update(dt):
     global x, y, vx, vy, width, height, xclear, yclear
     x += vx*dt/1000
     y += vy*dt/1000
-    vy += ay * dt / 1000
+    vy += gravity * dt / 1000
     if x < 0 + size:
         x = 0 + size
     if y < 0 + size:
