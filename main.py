@@ -5,10 +5,19 @@ import sys
 
 # Import non-standard modules.
 import pygame
-from pygame.locals import *
+from pygame.locals import QUIT
 
 RED = (200, 0, 0)
-
+size = 25
+x = 100
+y = 100
+vx = 100
+vy = 100
+width, height = 640, 480
+bounciness = 0.8
+ay = 100
+xclear = True
+yclear = True
 
 def update(dt):
     """
@@ -20,7 +29,25 @@ def update(dt):
     x += v * dt
 
     and this will scale your velocity based on time. Extend as necessary."""
+    global x, y, vx, vy, width, height, xclear, yclear
+    x += vx*dt/1000
+    y += vy*dt/1000
+    vy += ay * dt / 1000
 
+    if x>size and x < width -size:
+        xclear = True
+
+    if y>size and y < height -size:
+        yclear = True
+
+
+    if xclear and (x + size >= width or x + -size <= 0):
+        vx = -vx
+        vx = vx * bounciness
+    if yclear and (y + size >= height or y + -size <= 0):
+        vy = -vy
+        vy = vy * bounciness
+        yclear = False
     # Go through events that are passed to the script by the window.
     for event in pygame.event.get():
         # We need to handle these events. Initially the only one you'll want to care
@@ -37,10 +64,15 @@ def draw(screen):
     """
     Draw things to the window. Called once per frame.
     """
-    screen.fill((0, 0, 0))  # Fill the screen with black.
+    global x
+    global y
+    global vx
+    global vy
+    global size
+    screen.fill((255, 255, 255))  # Fill the screen with white.
 
     # Redraw screen here.
-    pygame.draw.circle(screen, (RED), (100, 100), 15)
+    pygame.draw.circle(screen, RED, (x, y), size)
 
     # Flip the display so that the things we drew actually show up.
     pygame.display.flip()
@@ -53,9 +85,9 @@ def runPyGame():
     # Set up the clock. This will tick every frame and thus maintain a relatively constant framerate. Hopefully.
     fps = 60.0
     fpsClock = pygame.time.Clock()
-
+    global width,height
     # Set up the window.
-    width, height = 640, 480
+
     screen = pygame.display.set_mode((width, height))
 
     # screen is the surface representing the window.
