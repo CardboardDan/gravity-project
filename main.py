@@ -7,15 +7,15 @@ import sys
 import pygame
 from pygame.locals import QUIT
 
+width, height = 800, 600
 RED = (200, 0, 0)
 size = 25
 x = 100
-y = 100
-vx = 100
-vy = 100
-width, height = 640, 480
-bounciness = 0.2
-ay = 100
+y = height-size
+vx = 50
+vy = -150
+bounciness = 0.5
+ay = 50
 xclear = True
 yclear = True
 
